@@ -1,0 +1,84 @@
+.App {
+  text-align: center;
+  display:flex;
+  flex-direction: row;
+  padding-top: 20px;
+  position: fixed;
+  background-color: #8df7f2;
+  min-width: 110vw;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 90vh;
+  min-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.container{
+  display: flex;
+  flex-direction: row;
+  min-width: 500px;
+}
+
+
+.form-group{
+  padding: 4px 4px 4px 0;
+}
+label{
+  padding-left:6px ;
+  padding-right:10px ;
+}
+.btn-success{
+background-color: greenyellow;
+}
+
+.First{
+  background-color: #282c34;
+  min-height: 100vh;
+  min-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  
+}
+.Second{
+  text-align: left;
+  
+}
+
+.NotFound{
+  background-color: rgb(230, 99, 99);
+}
