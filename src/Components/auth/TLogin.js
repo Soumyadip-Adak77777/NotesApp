@@ -1,20 +1,26 @@
 import React,{ useState } from 'react'
-import { NavLink,useHistory } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import logo from '../../logo.svg';
+import Cookies from 'js-cookie'
 import 'bootstrap/dist/css/bootstrap.css'
 import '../../App.css';
 import Navbar from '../../Components/Navbar';
 
+import TDashboard from '../TDashboard';
 
-const TLogin = () => {
+const TLogin = (props) => {
 
-    const history=useHistory();
+    
     const [user,setUser] = useState({
         email:"",
         password:"",
     });
 
     const [userData,setUserData]=useState();
+
+    const [state,setState]=useState({
+        login:false
+    });
 
     let name,value;
     const handleInputs = (e) => {
@@ -37,7 +43,12 @@ const TLogin = () => {
         });
 
         const data=await res.json();
+        console.log(data)
+        const {access_token,refresh_token}=data;
 
+        Cookies.set("access",access_token);
+        Cookies.set("refresh",refresh_token);
+        Cookies.set("email",email);
         setUserData(data);
         
         if(data.message ){
@@ -45,12 +56,19 @@ const TLogin = () => {
             console.log(data);
         }else{
             window.alert("login successful");
-            history.push("/");
+            
+                // Auth.login(()=>{
+                //     props.history.push("/dashboard");
+                // })
+        setState({login:true})
+            
         }
     }
 
     return (
         <>
+         { !state.login ?
+        <div>
         <div className="Navbar"><Navbar/></div>
       <div className="App row">
         <div className="First col-1">
@@ -66,13 +84,13 @@ const TLogin = () => {
                         <h4 className="form-title pt-5">Login for Teachers</h4>
                         <form method="POST" className="login-form" id="login-form">
                             <div className="form-group pt-5">
-                                <label htmlfor="email">
+                                <label htmlFor="email">
                                     <i className="zmdi zmdi-email"></i>
                                 </label> 
                                 <input className="border border-info shadow bg-body rounde" type="email" name="email" id="email" autoComplete="off" value={user.email} onChange={handleInputs} placeholder="Your Email"/>
                             </div>
                             <div className="form-group pt-2">
-                                <label htmlfor="password">
+                                <label htmlFor="password">
                                     <i className="zmdi zmdi-lock"></i>
                                 </label> 
                                 <input className="border border-info shadow bg-body rounde" type="password" name="password" id="password" autoComplete="off" value={user.password} onChange={handleInputs} placeholder="Your Password"/>
@@ -93,6 +111,11 @@ const TLogin = () => {
             </section>
             </div>
             </div>
+            </div>:
+             <div>
+             <TDashboard/>
+             </div>
+}
         </>
     )
 }

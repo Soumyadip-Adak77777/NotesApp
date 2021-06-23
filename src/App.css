@@ -79,6 +79,21 @@ background-color: greenyellow;
   
 }
 
-.NotFound{
+.Notfound{
   background-color: rgb(230, 99, 99);
+  min-width: 100vw;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
+
+.WorkingArea{
+  min-height: 85vh;
+background-color: rgb(95, 223, 195);
+}
+
+
+.DashboardSection{
+padding-left: 8em;;
+margin-left: 20px;
 }

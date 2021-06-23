@@ -72,37 +72,37 @@ const SRegister = () => {
                         <h4 className="form-title pt-5">Registration for Students</h4>
                         <form method="POST" className="register-form" id="register-form">
                             <div className="form-group pt-5">
-                                <label htmlfor="name">
+                                <label htmlFor="name">
                                     <i className="zmdi zmdi-account"></i>
                                 </label> 
                                 <input className="border border-info shadow bg-body rounde " type="text" name="name" id="name" autoComplete="off" value={user.name} onChange={handleInputs} placeholder="Your Name"/>
                             </div>
                             <div className="form-group pt-2">
-                                <label htmlfor="stream">
+                                <label htmlFor="stream">
                                     <i className="zmdi zmdi-case"></i>
                                 </label> 
                                 <input className="border border-info shadow bg-body rounde" type="text" name="stream" id="stream" autoComplete="off" value={user.stream} onChange={handleInputs} placeholder="Your Stream(Eg:MCA)"/>
                             </div>
                             <div className="form-group pt-2">
-                                <label htmlfor="semester">
+                                <label htmlFor="semester">
                                     <i className="zmdi zmdi-book"></i>
                                 </label> 
                                 <input className="border border-info shadow bg-body rounde" type="text" name="semester" id="semester" autoComplete="off" value={user.semester} onChange={handleInputs} placeholder="Your Semester(Eg:6)"/>
                             </div>
                             <div className="form-group pt-2">
-                                <label htmlfor="email">
+                                <label htmlFor="email">
                                     <i className="zmdi zmdi-email"></i>
                                 </label> 
                                 <input className="border border-info shadow bg-body rounde" type="email" name="email" id="email" autoComplete="off" value={user.email} onChange={handleInputs} placeholder="Your Email"/>
                             </div>
                             <div className="form-group pt-2">
-                                <label htmlfor="password">
+                                <label htmlFor="password">
                                     <i className="zmdi zmdi-lock"></i>
                                 </label> 
                                 <input className="border border-info shadow bg-body rounde" type="password" name="password" id="password" autoComplete="off" value={user.password} onChange={handleInputs} placeholder="Your Password"/>
                             </div>
                             <div className="form-group pt-2">
-                                <label htmlfor="conf_password">
+                                <label htmlFor="conf_password">
                                     <i className="zmdi zmdi-lock"></i>
                                 </label> 
                                 <input className="border border-info shadow bg-body rounde" type="password" name="confirm_password" id="confirm_password" autoComplete="off" value={user.confirm_password} onChange={handleInputs} placeholder="Confirm Your Password"/>
