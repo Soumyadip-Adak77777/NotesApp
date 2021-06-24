@@ -89,7 +89,7 @@ const ViewNotes = () => {
                                         <td><input type="submit" name="UploadNote" id="UploadNote" className="form-submit  btn btn-outline-success" onClick={()=>download(state.notepath)} value="Download"/></td>
                                     </tr>
                                 </tbody>
-                                :(<div></div>))}
+                                :(<span>.</span>))}
                             </table>
                         </div>
                        

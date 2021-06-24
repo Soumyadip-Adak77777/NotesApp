@@ -111,7 +111,7 @@ const ViewNotes = () => {
                                         <td><input type="submit" name="UploadNote" id="UploadNote" className="form-submit  btn btn-outline-danger" onClick={()=>deleteNote(state._id,state.name)} value="Delete"/></td>
                                     </tr>
                                 </tbody>
-                                   :(<div></div>))}
+                                   :(<span>.</span>))}
                             </table>
                         </div>
                        

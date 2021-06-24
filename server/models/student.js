@@ -8,7 +8,7 @@ const studentSchema = new Schema({
     stream: { type: String, required:true },
     semester: { type: Number, required:true },
     password: { type: String, required:true },
-    role: { type: String, default:'student' },
+    role: { type: String, default:'Student' },
 },{timestamps:true});
 
 

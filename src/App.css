@@ -97,3 +97,9 @@ background-color: rgb(95, 223, 195);
 padding-left: 8em;;
 margin-left: 20px;
 }
+
+.card{
+  max-width: 50rem;
+  min-width: 300px;
+  
+}

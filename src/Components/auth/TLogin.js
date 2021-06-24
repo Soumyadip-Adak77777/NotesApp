@@ -82,7 +82,7 @@ const TLogin = (props) => {
                 <div className="container">
                     <div className="login-form">
                         <h4 className="form-title pt-5">Login for Teachers</h4>
-                        <form method="POST" className="login-form" id="login-form">
+                        <form method="POST" className="form-group" id="form-group">
                             <div className="form-group pt-5">
                                 <label htmlFor="email">
                                     <i className="zmdi zmdi-email"></i>

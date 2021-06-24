@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const handleMultipartData = multer({storage,limits:{fileSize: 1000000*10}}).single('notepath');
+const handleMultipartData = multer({storage,limits:{fileSize: 1000000*10}}).single('notepath'); 
 
 
 const notesController = {

@@ -51,4 +51,22 @@ router.get('/student',auth,suserController.sme);
 
 
 
+//Admin
+//GET
+//Get All Teachers profiles
+router.get('/teachers',tuserController.index);
+//Get All students profiles
+router.get('/students',suserController.index);
+//PUT
+//Update Teacher
+router.put('/teachers/:id',tuserController.update);
+//Update Student
+router.put('/students/:id',suserController.update);
+//DELETE
+//Delete one Teacher
+router.delete('/teachers/:id',tuserController.destroy);
+//Delete one student
+router.delete('/students/:id',suserController.destroy);
+
+
 export default router;
