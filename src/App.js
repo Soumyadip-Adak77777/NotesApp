@@ -8,13 +8,18 @@ import { Route,Switch } from 'react-router-dom';
 import SDashboard from "./Components/SDashboard";
 import TDashboard from "./Components/TDashboard";
 import ProtectedRoute from './ProtectedRoute/protectedRoute'
+import ADashboard from "./Components/ADashboard";
+
+
 
 function App() {
+
   return (
     <>
     <Switch>
           <ProtectedRoute path="/sdashboard" component={SDashboard}/>
           <ProtectedRoute path="/tdashboard" component={TDashboard}/>
+          <Route exact path="/adminSpecialCharacterURL" component={ADashboard}/>
           <Route exact path="/" component={SLogin}/>
           <Route  path="/tlogin" component={TLogin}/>
           <Route  path="/slogin" component={SLogin}/>

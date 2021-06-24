@@ -136,12 +136,12 @@ const TDashboard = (props) => {
                 </nav>
             </div>
             <div>
-                <ul class="nav nav-tabs">
+                <ul className="nav nav-tabs">
                     <li className="nav-item">
                         <Link className="nav-link"  aria-current="page" to="/tuploadnotes"><i className="zmdi zmdi-upload"></i> Upload Notes</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link" to="/tupdatenotes"><i className="zmdi zmdi-wrench"></i> Update Notes</Link>
+                        <Link className="nav-link disabled" to="/tupdatenotes"><i className="zmdi zmdi-wrench"></i> Update Notes</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link" to="/tviewnotes"><i className="zmdi zmdi-file-text"></i> View Notes</Link>

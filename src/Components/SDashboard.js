@@ -105,7 +105,7 @@ const SDashboard = (props) => {
 
 
     useEffect(() => {
-        user();
+         user();
     }, [])
     const user = async () => {
 
@@ -139,7 +139,7 @@ const SDashboard = (props) => {
             </div>
 
             <div>
-                <ul class="nav nav-tabs">
+                <ul className="nav nav-tabs">
                     <li className="nav-item">
                         <Link className="nav-link"  aria-current="page" to="/sviewnotes"><i className="zmdi zmdi-file-text"></i> View Notes</Link>
                     </li>

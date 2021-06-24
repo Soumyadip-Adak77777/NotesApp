@@ -57,6 +57,13 @@ router.get('/student',auth,suserController.sme);
 router.get('/teachers',tuserController.index);
 //Get All students profiles
 router.get('/students',suserController.index);
+//Get One Teacher profile
+router.get('/teacher/:id',tuserController.indexone);
+//Get One students profile
+router.get('/student/:id',suserController.indexone);
+//Get one note
+router.get('/note/:id',notesController.nme);
+
 //PUT
 //Update Teacher
 router.put('/teachers/:id',tuserController.update);

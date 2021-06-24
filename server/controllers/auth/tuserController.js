@@ -49,6 +49,17 @@ const tuserController={
             res.status(201).json(document);
         
     },
+    async indexone(req,res,next){
+        let document;
+        //pagination => mongoose pagination for larger no of notes
+        try{
+            document = await Teacher.findOne({_id:req.params.id});
+
+        }catch(err){
+            return next(CustomErrorHandler.serverError());
+        }
+        return res.json(document);
+    },
 };
 
 export default tuserController;

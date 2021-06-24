@@ -109,7 +109,7 @@ const TRegister = () => {
                         </div>
                        
                         <div className="pt-4">
-                            {userData && <h5 style={{ color: 'red' }}>Error: {userData.message}</h5>}
+                            {userData && <h5 style={{ color: 'red' }}>Warning: {userData.message}</h5>}
                         </div>
                     </div>
                                    

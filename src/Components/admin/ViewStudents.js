@@ -1,20 +1,10 @@
 import React,{useState,useEffect} from 'react'
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css'
 import Cookies from 'js-cookie';
-
-const ViewNotes = () => {
+const ViewStudents = () => {
 
     const [states, setStates] = useState([]); 
-
-    const [userData, setUserData] = useState({
-        role: "",
-        _id: "",
-        name: "",
-        email: "",
-        stream: "",
-        semester: "",
-        createdAt: ""
-    });
 
     useEffect(() => {
         note();
@@ -23,7 +13,7 @@ const ViewNotes = () => {
 
         
 
-        const note = await fetch('/api/notes', {
+        const note = await fetch('/api/students', {
 
             method: "GET",
            
@@ -33,36 +23,40 @@ const ViewNotes = () => {
         setStates(data2);
     }
 
-    function download(notepath){
+  
 
-        window.open(notepath);
-         
-      };
+      const deleteNote= async (id,name) => {
 
-      useEffect(() => {
-        user();
-    }, [])
-    const user = async () => {
+        const access=Cookies.get("access");
+        console.log(access,id);
+        const res = await fetch(`/api/students/${id}`, {
 
-        const access = Cookies.get("access");
-
-        const user = await fetch('/api/student', {
-
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${access}`
-            }
+            method: "DELETE",
+           
+           
         })
-        const data2 = await user.json();
-        console.log(data2)
-        setUserData(data2);
+        const data2 = await res.json();
+        if(data2.message){
+            window.alert(data2.message);
+        }else{
+            
+            window.alert(name+" Deleted successfully");
+        }
+        
     }
+
+    const updateNote= async (id) => {
+        Cookies.set("studentid",id);
+        
+    }
+
+
+
 
     return (
         <>
             <div>
-                <h1>View Notes</h1>
+                <h1>View Students</h1>
                 <section className="UploadNote DashboardSection">
                     <div className="container">
                         <div className="upload_form ">
@@ -75,29 +69,32 @@ const ViewNotes = () => {
                                         <th className="p-4" scope="col">Stream</th>
                                         <th className="p-4" scope="col">Semester</th>
                                         <th className="p-4" scope="col">Created At</th>
-                                        <th className="p-4" scope="col">Download</th>
+                                        <th className="p-4" scope="col">Edit</th>
+                                        <th className="p-4" scope="col">Delete</th>
                                     </tr>
                                 </thead>
-                                { states.map((state,index)=>(state.semester===userData.semester && state.stream===userData.stream)?
+                                {  states.map((state,index)=>
                                 <tbody>
                                     <tr>
-                                        <td >{index+1}</td>
+                                        <td>{state._id}</td>
                                         <td>{state.name}</td>
                                         <td>{state.stream}</td>
                                         <td>{state.semester}</td>
                                         <td>{state.createdAt.split('T')[0]}</td>
-                                        <td><input type="submit" name="UploadNote" id="UploadNote" className="form-submit  btn btn-outline-success" onClick={()=>download(state.notepath)} value="Download"/></td>
+                                        <td><Link to="/aeditstudents" name="UploadNote" id="UploadNote" className="form-submit  btn btn-outline-primary" onClick={()=>updateNote(state._id)}>Edit</Link></td>
+                                        <td><input type="submit" name="UploadNote" id="UploadNote" className="form-submit  btn btn-outline-danger" onClick={()=>deleteNote(state._id,state.name)} value="Delete"/></td>
                                     </tr>
                                 </tbody>
-                                :<th></th>)}
+                                   )}
                             </table>
                         </div>
-                       
+                        
                     </div>
                 </section>
+                
             </div>
         </>
     )
 }
 
-export default ViewNotes
+export default ViewStudents

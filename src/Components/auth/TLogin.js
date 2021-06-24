@@ -87,7 +87,7 @@ const TLogin = (props) => {
                                 <label htmlFor="email">
                                     <i className="zmdi zmdi-email"></i>
                                 </label> 
-                                <input className="border border-info shadow bg-body rounde" type="email" name="email" id="email" autoComplete="off" value={user.email} onChange={handleInputs} placeholder="Your Email"/>
+                                <input className="border border-info shadow bg-body rounde " type="email" name="email" id="email" autoComplete="off" value={user.email} onChange={handleInputs} placeholder="Your Email"/>
                             </div>
                             <div className="form-group pt-2">
                                 <label htmlFor="password">
@@ -103,7 +103,7 @@ const TLogin = (props) => {
                         <NavLink to="/tregister">Don't have any account?</NavLink> 
                         </div>
                         <div className="pt-4">
-                            {userData && <h5 style={{ color: 'red' }}>Error: {userData.message}</h5>}
+                            {userData && <h5 style={{ color: 'red' }}>Warning: {userData.message}</h5>}
                         </div>
                     </div>
                                    

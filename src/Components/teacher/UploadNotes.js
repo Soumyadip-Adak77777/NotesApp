@@ -1,11 +1,11 @@
 import React,{useState,useEffect} from 'react'
-import { useHistory } from 'react-router';
+
 import 'bootstrap/dist/css/bootstrap.css'
 import Cookies from 'js-cookie';
 
 
 const UploadNotes = () => {
-    const history = useHistory();
+    
 
     const [note,setNote] = useState({
         name:"",
@@ -56,7 +56,7 @@ const UploadNotes = () => {
     
     const postData = async (e) =>{
         e.preventDefault();
-        const {name,stream,semester,notepath} = note;
+        const {name,stream,semester} = note;
         
         const inputFile=document.getElementById("notepath");
         const formData=new FormData();
