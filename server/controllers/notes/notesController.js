@@ -162,6 +162,14 @@ const notesController = {
         }
         return res.json(document);
     },
+    async destroyone(req,res,next){
+        const document = await Note.findOneAndRemove({_id:req.params.id});
+        if(!document){
+            return next(new Error('Nothing to delete'));
+        }
+        
+        res.json(document);
+    },
     
 };
 

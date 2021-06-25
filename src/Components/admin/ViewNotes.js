@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 
 import 'bootstrap/dist/css/bootstrap.css'
-import Cookies from 'js-cookie';
+
 const ViewNotes = () => {
 
     const [states, setStates] = useState([]); 
@@ -31,14 +31,12 @@ const ViewNotes = () => {
 
       const deleteNote= async (id,name) => {
 
-        const access=Cookies.get("access");
-        console.log(access,id);
-        const res = await fetch(`/api/notes/${id}`, {
+       
+       
+        const res = await fetch(`/api/note/${id}`, {
 
             method: "DELETE",
-            headers:{
-                "Authorization":`Bearer ${access}`
-            }
+           
            
         })
         const data2 = await res.json();

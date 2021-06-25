@@ -27,8 +27,7 @@ const ViewStudents = () => {
 
       const deleteNote= async (id,name) => {
 
-        const access=Cookies.get("access");
-        console.log(access,id);
+        
         const res = await fetch(`/api/students/${id}`, {
 
             method: "DELETE",

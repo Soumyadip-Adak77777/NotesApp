@@ -1,8 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import { PORT, DB_URL } from './config';
+import { PORT, DB_URL,APP_URL } from './config';
 import errorHandler from './middlewares/errorHandler';
 import path from 'path';
+
 
 const app=express();
 

@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Route, Switch,Link } from 'react-router-dom';
 import EditStudent from './admin/EditStudent';
 import EditTeacher from './admin/EditTeacher';

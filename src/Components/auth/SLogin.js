@@ -59,70 +59,13 @@ const SLogin = (props) => {
         }else{
             window.alert("login successful");
             
-                // Auth.login(()=>{
-                //     props.history.push("/dashboard");
-                // })
+               
         setState({login:true})
             
         }
     }
 
-    // const hasAccess = async (access_token,refresh_token) =>{
-    //     if(!refresh_token) return null;
-    //     if(access_token===undefined){
-    //         access_token = await refresh(refresh_token);
-    //         return access_token;
-    //     }
-    //     return access_token;
-    // }
-
-    // const protect = async e =>{
-    //     let access_token=Cookies.get("access");
-    //     let refresh_token=Cookies.get("refresh");
-
-    //     access_token =await hasAccess(access_token,refresh_token);
-    //     if(!access_token){
-
-    //     }else{
-    //         await requestLogin(access_token,refresh_token);
-    //     }
-    // }
-
-    // const refresh = (refresh_token) =>{
-    //     return new Promise((resolve,reject)=>{
-    //         axios.post("/srefresh",{token:refresh_token}).then(data =>{
-    //             if(data.message){
-    //                 resolve(false);
-    //             }else{
-    //                 const {access_token}=data.access_token;
-    //                 Cookies.set("access",access_token);
-    //             }
-    //         })
-    //     })
-    // }
-
-    // const requestLogin = async (access_token,refresh_token)=>{
-    //     return new Promise((resolve,reject)=>{
-    //         axios.post("/dashboard",{},{headers:{"Authorization":`Bearer ${access_token}`}}).then(async data=>{
-    //             if(data.message){
-    //                 if(data.message==="No user found")
-    //                 {
-                       
-    //                 }
-    //                 else if(data.message="Invalid refresh token")
-    //                 {
-    //                     const access_token=await refresh(refresh_token);
-    //                     return await requestLogin(access_token,refresh_token);
-    //                 }
-    //             resolve(false);
-    //             }else{
-    //                 history.push('/dashboard')
-    //                 resolve(true);
-    //             }
-
-    //         })
-    //     });
-    // }    
+    
 
     return (
         <>

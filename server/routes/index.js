@@ -74,6 +74,8 @@ router.put('/students/:id',suserController.update);
 router.delete('/teachers/:id',tuserController.destroy);
 //Delete one student
 router.delete('/students/:id',suserController.destroy);
+//Delete one Note
+router.delete('/note/:id',notesController.destroyone);
 
 
 export default router;
