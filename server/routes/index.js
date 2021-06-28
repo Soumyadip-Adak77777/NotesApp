@@ -10,6 +10,12 @@ import { tuserController } from '../controllers'
 import { suserController,refreshController,notesController } from '../controllers'
 import auth from '../middlewares/auth'
 import role from '../middlewares/role'
+//  import uploadS3  from '../middlewares/upload'
+// import {cloudnotesController} from '../controllers'
+
+
+
+
 
 //Teacher
 //POST
@@ -76,6 +82,16 @@ router.delete('/teachers/:id',tuserController.destroy);
 router.delete('/students/:id',suserController.destroy);
 //Delete one Note
 router.delete('/note/:id',notesController.destroyone);
+//Dowload a note
+router.get('/notes/:key',notesController.download);
+
+
+
+// router.post('/note/create',notesController.createProduct);
+// router.put('/note/update/:id',cloudnotesController.updateNote,uploadS3.array("notesfile"));
+// router.get('/note/get/:id',cloudnotesController.getNoteDetailsById);
+// router.get('/notes/get',cloudnotesController.getNotes);
+// router.delete('/note/delete/:id',cloudnotesController.deleteNoteById);
 
 
 export default router;

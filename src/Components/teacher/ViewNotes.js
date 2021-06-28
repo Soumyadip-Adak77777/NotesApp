@@ -32,8 +32,9 @@ const ViewNotes = () => {
     }
 
     function download(notepath){
-
-        window.open(notepath);
+        var str=`${notepath}`.replace("http://localhost:3000/"," ").substring(1, 100);
+        console.log(str);
+        window.open(`${str}`, '_blank');
          
       };
 

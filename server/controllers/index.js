@@ -6,3 +6,4 @@ export { default as tuserController } from './auth/tuserController';
 export { default as suserController } from './auth/suserController';
 export { default as refreshController } from './auth/refreshController';
 export { default as notesController } from './notes/notesController';
+// export { default as cloudnotesController } from './notes/cloudnotesController';

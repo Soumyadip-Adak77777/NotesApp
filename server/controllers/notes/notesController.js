@@ -1,9 +1,14 @@
 import { Note } from "../../models"
 import multer from 'multer';
+// import multerS3 from 'multer-s3';
 import path from 'path';
 import fs from 'fs';
 import Joi from 'joi';
 import CustomErrorHandler from "../../services/CustomErrorHandler";
+// import aws from 'aws-sdk';
+// import uploadS3 from "../../middlewares/upload";
+
+
 
 const storage = multer.diskStorage({
     destination:(req,file,cb)=>cb(null,'uploads/'),
@@ -13,17 +18,44 @@ const storage = multer.diskStorage({
     }
 });
 
-const handleMultipartData = multer({storage,limits:{fileSize: 1000000*10}}).single('notepath'); 
 
+const handleMultipartData = multer({storage,limits:{fileSize: 1000000*5}}).single('notepath'); 
 
+const { uploadFile } = require('../../s3')
+//////
+// const s3 =new aws.S3({
+//     accessKeyId:"AKIAUET7DJ2A3YXKSKXF",
+//     secretAccessKey:"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",
+// })
+
+// const upload = multer({
+//     storage: multerS3({
+//       s3: s3,
+//       bucket: 'uploadnotes',
+//       acl:'public-read',
+//       filename: function (req, file, cb) {
+//         const uniqueName=`${Date.now()}-${Math.round(Math.random()*1E9)}${path.extname(file.originalname)}`;
+//         cb(null, uniqueName);
+//       }
+//     })
+//     ,limits:{fileSize: 1000000*5}}).single('notepath');
+//////
 const notesController = {
     async store(req,res,next){
         //multipart form data
         handleMultipartData (req,res,async (err) => {
-            if(err){
-                return next(CustomErrorHandler.serverError(err.message));
-            }
-            const filePath = req.file.path;
+
+            const file =req.file
+            const result = await uploadFile(file);
+            console.log(result);
+            const notesurl=`https://uploadnotes.s3.us-east-2.amazonaws.com/${result.Key}`
+            
+
+            // if(err){
+            //     console.log(err);
+            //     return next(CustomErrorHandler.serverError(err.message));
+            // }
+            // const filePath = req.file.path;
             //validation
             const noteSchema = Joi.object({
                 name: Joi.string().required(),
@@ -35,18 +67,27 @@ const notesController = {
     
             const {error} = noteSchema.validate(req.body);
     
-            if(error)
-            {
-                //delete
-                fs.unlink(`${appRoot}/${filePath}`,(err)=>{
-                    if(err)
-                    {
-                        return next(CustomErrorHandler.serverError(err.message));
-                    }
+            // if(error)
+            // {
+            //     //delete
+            //     // fs.unlink(`${appRoot}/${filePath}`,(err)=>{
+            //     //     if(err)
+            //     //     {
+            //     //         console.log(err)
+            //     //         return next(CustomErrorHandler.serverError(err.message));
+            //     //     }
                     
-                });
-                return next(error);
-            }
+            //     // });
+            //     fs.unlink('/uploads',(err)=>{
+            //         if(err)
+            //         {
+            //             console.log(err)
+            //             return next(CustomErrorHandler.serverError(err.message));
+            //         }
+                    
+            //     });
+            //     return next(error);
+            // }
 
             const { name,stream,semester,author} =req.body;
 
@@ -58,7 +99,7 @@ const notesController = {
                     stream:stream,
                     semester:semester,
                     author:author,
-                    notepath:filePath,
+                    notepath:notesurl,
                 });
             }catch(err){
                 return next(err);
@@ -71,9 +112,9 @@ const notesController = {
     update(req,res,next){
         //multipart form data
         handleMultipartData (req,res,async (err) => {
-            if(err){
-                return next(CustomErrorHandler.serverError(err.message));
-            }
+            // if(err){
+            //     return next(CustomErrorHandler.serverError(err.message));
+            // }
             let filePath;
             if(req.file){
                 filePath = req.file.path;
@@ -90,20 +131,21 @@ const notesController = {
     
             const {error} = noteSchema.validate(req.body);
     
-            if(error)
-            {
-                if(req.file){
-                    //delete
-                    fs.unlink(`${appRoot}/${filePath}`,(err)=>{
-                        if(err)
-                        {
-                            return next(CustomErrorHandler.serverError(err.message));
-                        }
+            // if(error)
+            // {
+            //     if(req.file){
+            //         //delete
+            //         fs.unlink('/uploads',(err)=>{
+            //             if(err)
+            //             {
+                            
+            //                 return next(CustomErrorHandler.serverError(err.message));
+            //             }
                         
-                    });
-                }
-                return next(error);
-            }
+            //         });
+            //     }
+            //     return next(error);
+            // }
 
             const { name,stream,semester,author} =req.body;
 
@@ -132,13 +174,13 @@ const notesController = {
             return next(new Error('Nothing to delete'));
         }
         //image delete
-        const filepath=document._doc.notepath;
-        fs.unlink(`${appRoot}/${filepath}`,(err)=>{
-            if(err){
-                return next(CustomErrorHandler.serverError());
-            }
-        });
-        res.json(document);
+        // const filepath=document._doc.notepath;
+        // fs.unlink(`${appRoot}/${filepath}`,(err)=>{
+        //     if(err){
+        //         return next(CustomErrorHandler.serverError());
+        //     }
+        // });
+        // res.json(document);
     },
     async index(req,res,next){
         let documents;
@@ -170,6 +212,14 @@ const notesController = {
         
         res.json(document);
     },
+    download(req,res){
+        const key=req.params.key
+        const readStream = getFileStream(key)
+        readStream.pipe(res)
+    },
+    
+   
+
     
 };
 

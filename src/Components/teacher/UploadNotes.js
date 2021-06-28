@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import Cookies from 'js-cookie';
-
+import axios from 'axios';
 
 const UploadNotes = () => {
     
@@ -71,18 +71,22 @@ const UploadNotes = () => {
         // const {name,stream,semester,author,notepath} = note;
         // formData.append('name':name);
 
+        // /api/notes
         
 
         const res = await fetch("/api/notes",{
             method:"POST",
+            
             headers:{
             //     "Content-Type" : "multipart/form-data",boundary="----WebKitFormBoundaryyrV7KO0BoCBuDbTL",
-                "Authorization":`Bearer ${access}`
+                "Authorization":`Bearer ${access}`,
+                "access-control-allow-credentials": true,
             },
             body:formData
             
         });
         
+    
 
         const data = await res.json();
 
@@ -103,7 +107,7 @@ const UploadNotes = () => {
             <section className="UploadNote DashboardSection">
                 <div className="container">
                     <div className="upload_form p-5">
-                        <form method="POST" className="upload_form" id="upload_form">
+                        <form method="POST" className="upload_form" id="upload_form" >
                             <div className="form-group pt-2">
                                 <label htmlFor="name">
                                     <i className="zmdi zmdi-file-text"></i>
