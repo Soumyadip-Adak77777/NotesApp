@@ -3,8 +3,8 @@ const fs = require('fs')
 
 const bucketName="uploadnotes";
 const region="us-east-2";
-const accessKeyId="AKIAUET7DJ2A3YXKSKXF";
-const secretAccessKey="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";
+const accessKeyId="XXXXXXXXXXXXXXX";
+const secretAccessKey="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
 
 const s3 = new S3({
     region,
