@@ -4,8 +4,8 @@ const aws =require('aws-sdk') ;
 const shortid = require("shortid");
 
 const s3 =new aws.S3({
-    accessKeyId:"AKIAUET7DJ2A3YXKSKXF",
-    secretAccessKey:"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",
+    accessKeyId:"XXXXXXXXXXXXXXX",
+    secretAccessKey:"XXXXXXXXXXXXXXXXXXXXXXXXXXX",
 })
 
 
